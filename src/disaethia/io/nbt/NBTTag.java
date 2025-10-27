@@ -196,8 +196,6 @@ public class NBTTag {
 			// Lists end at ]. All potential string tags should be escaped.
 			String data = snbt.readUntil(new char[] {']'}, new char[] {});
 			data += snbt.readChar();	// Read the ending ]
-			int li = data.length()-1;
-			String parse = data.substring(0, li);
 			
 			/* TAG_BYTE_ARRAY */
 			if (data.charAt(1) == 'b' || data.charAt(1) == 'B' ) payload = NBTByteArray.fromSNBT(new ActualStringBuffer(data)); 
