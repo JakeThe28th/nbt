@@ -156,14 +156,14 @@ public class NBTList extends NBTTag {
 		//print(i, "END_OF_LIST\n");
 	}
 	
-	public NBTList add(byte value) throws IOException { return add(new NBTByte(value)); }
-	public NBTList add(short value) throws IOException { return add(new NBTShort(value)); }
-	public NBTList add(int value) throws IOException { return add(new NBTInt(value)); }
-	public NBTList add(long value) throws IOException { return add(new NBTLong(value)); }
-	public NBTList add(float value) throws IOException { return add(new NBTFloat(value)); }
-	public NBTList add(double value) throws IOException { return add(new NBTDouble(value)); }
-	public NBTList add(byte[] value) throws IOException { return add(new NBTByteArray(value)); }
-	public NBTList add(String value) throws IOException { return add(new NBTString(value)); }
+	public NBTList add(byte value) { return add(new NBTByte(value)); }
+	public NBTList add(short value) { return add(new NBTShort(value)); }
+	public NBTList add(int value) { return add(new NBTInt(value)); }
+	public NBTList add(long value) { return add(new NBTLong(value)); }
+	public NBTList add(float value) { return add(new NBTFloat(value)); }
+	public NBTList add(double value) { return add(new NBTDouble(value)); }
+	public NBTList add(byte[] value) { return add(new NBTByteArray(value)); }
+	public NBTList add(String value) { return add(new NBTString(value)); }
 	
 	public NBTString getString(int i) 		{ return (NBTString) get(i); }
 	public NBTList getList(int i) 			{ return (NBTList) get(i); }
