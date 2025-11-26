@@ -1,6 +1,5 @@
 package disaethia.io.nbt;
 
-import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.text.ParseException;
 import java.util.ArrayList;

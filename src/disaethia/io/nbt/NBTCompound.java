@@ -18,19 +18,21 @@ public class NBTCompound extends NBTTag implements Iterable<NBTNamedTag> {
 	 * Adds a tag, and doesn't check for a duplicate with the same key.
 	 * @param tag
 	 */
-	private void add(NBTNamedTag tag) {
+	private NBTCompound add(NBTNamedTag tag) {
 		NBTNamedTag[] new_arr = new NBTNamedTag[payload.length+1];
 		for (int i = 0; i < new_arr.length; i++) {
 			new_arr[i] = tag;
 			if (i != new_arr.length-1) new_arr[i] = payload[i];
 		}
 		payload = new_arr;
+		return this;
 	}
 	
-	public void put(NBTNamedTag tag) {
+	public NBTCompound put(NBTNamedTag tag) {
 		int ind = getFirstIndexOf(tag.name);
 		if (ind < 0) add(tag);			// If the tag doesn't exist
 		else payload[ind] = tag; 		// If the tag already exists
+		return this;
 	}
 	
 	public int getFirstIndexOf(NBTString name) { 
@@ -40,13 +42,14 @@ public class NBTCompound extends NBTTag implements Iterable<NBTNamedTag> {
 		return -1;
 	}
 	
-	public void remove(int j) {
+	public NBTCompound remove(int j) {
 		NBTNamedTag[] new_arr = new NBTNamedTag[payload.length-1];
 		for (int i = 0; i < new_arr.length; i++) {
 			if (i == j) i++;
 			new_arr[i] = payload[i];
 		}
 		payload = new_arr;
+		return this;
 	}
 	
 	public NBTNamedTag get(int i) { return payload[i]; } 
@@ -89,6 +92,10 @@ public class NBTCompound extends NBTTag implements Iterable<NBTNamedTag> {
 		}
 		string += "}";
 		return string;
+	}
+	
+	public static NBTCompound fromSNBT(String snbt) throws ParseException {
+		return fromSNBT(new ActualStringBuffer(snbt));
 	}
 	
 	public static NBTCompound fromSNBT(ActualStringBuffer snbt) throws ParseException {
