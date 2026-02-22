@@ -122,7 +122,7 @@ public class NBTNamedTag extends NBTTag {
 	public NBTByteArray getByteArray() 	{ return (NBTByteArray) payload; }
 	public NBTList getList() 			{ return (NBTList) payload; }
 	public NBTCompound getCompound() 	{ return (NBTCompound) payload; }
-	
+	public NBTIntArray getIntArray() 	{ return (NBTIntArray) payload; }
 
 	@Override
 	public String toSNBT(boolean formatted) {
