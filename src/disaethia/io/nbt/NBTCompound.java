@@ -44,9 +44,10 @@ public class NBTCompound extends NBTTag implements Iterable<NBTNamedTag> {
 	
 	public NBTCompound remove(int j) {
 		NBTNamedTag[] new_arr = new NBTNamedTag[payload.length-1];
+		int offset = 0;
 		for (int i = 0; i < new_arr.length; i++) {
-			if (i == j) i++;
-			new_arr[i] = payload[i];
+			if (i == j) offset = 1;
+			new_arr[i] = payload[i+offset];
 		}
 		payload = new_arr;
 		return this;
