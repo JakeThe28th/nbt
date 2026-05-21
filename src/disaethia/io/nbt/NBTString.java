@@ -8,6 +8,8 @@ import disaethia.io.nbt.utils.ActualStringBuffer;
 
 public class NBTString extends NBTTag {
 	
+	public static final byte TAG_TYPE = 8;
+	
 	String payload;
 	public NBTString(String val) 	{ set(val); this.TYPE = 8;}
 	

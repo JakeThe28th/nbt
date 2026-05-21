@@ -164,8 +164,16 @@ public class NBTList extends NBTTag {
 	public NBTList add(byte[] value) { return add(new NBTByteArray(value)); }
 	public NBTList add(String value) { return add(new NBTString(value)); }
 	
-	public NBTString getString(int i) 		{ return (NBTString) get(i); }
-	public NBTList getList(int i) 			{ return (NBTList) get(i); }
-	public NBTCompound getCompound(int i) 	{ return (NBTCompound) get(i); }
+	public NBTString 	getString		(int i) 	{ return (NBTString) 	get(i); }
+	public NBTList 		getList			(int i)		{ return (NBTList) 		get(i); }
+	public NBTCompound 	getCompound		(int i) 	{ return (NBTCompound) 	get(i); }
+	public NBTInt 		getInt			(int i) 	{ return (NBTInt) 		get(i); }
+
+	/** Returns an NBTList of NBTStrings, corresponding to the Strings in the given list. */
+	public static NBTList of(Iterable<String> list) {
+		NBTList serialized = new NBTList(NBTString.TAG_TYPE);
+		for (String string : list) serialized.add(string);
+		return serialized;
+	}
 
 }

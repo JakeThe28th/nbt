@@ -4,6 +4,8 @@ import java.nio.ByteBuffer;
 
 public class NBTInt extends NBTTag {
 	
+	public static final byte TAG_TYPE = 3;
+
 	int payload;
 	public NBTInt(int val) 	{ set(val); this.TYPE = 3; }
 	
