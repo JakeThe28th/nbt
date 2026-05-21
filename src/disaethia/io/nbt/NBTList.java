@@ -177,5 +177,37 @@ public class NBTList extends NBTTag {
 		for (String string : list) serialized.add(string);
 		return serialized;
 	}
+	
+	private interface Cast<T> { T cast(NBTTag tag); }
+
+	@SuppressWarnings("unchecked")
+	public <T> ArrayList<T> toCastList() {
+		return (ArrayList<T>) toList();
+	}
+	
+	public ArrayList<?> toList() {
+		switch (tag_type.get()) {
+			case NBTByte  	  .TAG_TYPE: return (toList(tag -> { return ((NBTByte)  	tag).get(); }));
+			case NBTShort	  .TAG_TYPE: return (toList(tag -> { return ((NBTShort) 	tag).get(); }));
+			case NBTInt  	  .TAG_TYPE: return (toList(tag -> { return ((NBTInt)   	tag).get(); }));
+			case NBTLong	  .TAG_TYPE: return (toList(tag -> { return ((NBTLong)  	tag).get(); }));
+			case NBTFloat	  .TAG_TYPE: return (toList(tag -> { return ((NBTFloat) 	tag).get(); }));
+			case NBTDouble	  .TAG_TYPE: return (toList(tag -> { return ((NBTDouble)    tag).get(); }));
+			case NBTByteArray .TAG_TYPE: return (toList(tag -> { return ((NBTByteArray) tag).get(); }));
+			case NBTString	  .TAG_TYPE: return (toList(tag -> { return ((NBTString)    tag).get(); }));
+			case NBTList	  .TAG_TYPE: return (toList(tag -> { return ((NBTList) 	  	tag).toList(); }));
+	     // case NBTCompound  .TAG_TYPE: return (toList(tag -> { return ((NBTCompound)  tag).get(); }));
+			case NBTIntArray  .TAG_TYPE: return (toList(tag -> { return ((NBTIntArray)  tag).get(); }));
+			case NBTLongArray .TAG_TYPE: return (toList(tag -> { return ((NBTLongArray) tag).get(); }));
+			case NBTInt24	  .TAG_TYPE: return (toList(tag -> { return ((NBTInt24) 	tag).get(); }));
+			default: throw new UnsupportedOperationException("Not implemented.");
+		}
+	}
+	
+	private <C> ArrayList<C> toList(Cast<C> cast) {
+		ArrayList<C> list = new ArrayList<>();
+		for (NBTTag tag : payload) list.add(cast.cast(tag));
+		return list;
+	}
 
 }
