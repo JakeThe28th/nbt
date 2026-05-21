@@ -181,10 +181,14 @@ public class NBTList extends NBTTag {
 	private interface Cast<T> { T cast(NBTTag tag); }
 
 	@SuppressWarnings("unchecked")
+	/** Returns an ArrayList&lt;X&gt; where X is the Object equivalent of the list's NBTTag type.<br>
+	 * For example: An NBTList of NBTStrings returns an ArrayList&lt;String&gt;.*/
 	public <T> ArrayList<T> toCastList() {
 		return (ArrayList<T>) toList();
 	}
 	
+	/** Returns an ArrayList&lt;X&gt; where X is the Object equivalent of the list's NBTTag type.<br>
+	 * For example: An NBTList of NBTStrings returns an ArrayList&lt;String&gt;.*/
 	public ArrayList<?> toList() {
 		switch (tag_type.get()) {
 			case NBTByte  	  .TAG_TYPE: return (toList(tag -> { return ((NBTByte)  	tag).get(); }));
