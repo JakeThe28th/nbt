@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import disaethia.io.nbt.utils.ActualStringBuffer;
 
 public class NBTList extends NBTTag {
+	
+	public static final byte TAG_TYPE = 9;
 
 	NBTTag[] payload;
 	NBTByte tag_type;
@@ -14,7 +16,7 @@ public class NBTList extends NBTTag {
 	
 	public NBTList(byte type) 	
 		{ 
-		this.TYPE = 9;
+		this.TYPE = TAG_TYPE;
 		this.tag_type = new NBTByte(type); 
 		this.length = new NBTInt(0); 
 		this.payload = new NBTTag[0]; 

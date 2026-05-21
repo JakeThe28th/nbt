@@ -4,7 +4,9 @@ import java.nio.ByteBuffer;
 
 public class NBTEnd extends NBTTag {
 	
-	public NBTEnd() 	{ this.TYPE = 0; }
+	public static final byte TAG_TYPE = 0;
+
+	public NBTEnd() 	{ this.TYPE = TAG_TYPE; }
 	
 	public int getSize() { return 1; }
 	

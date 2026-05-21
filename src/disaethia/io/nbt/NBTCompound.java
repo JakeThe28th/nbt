@@ -9,10 +9,12 @@ import disaethia.io.nbt.utils.ActualStringBuffer;
 
 public class NBTCompound extends NBTTag implements Iterable<NBTNamedTag> {
 	
+	public static final byte TAG_TYPE = 10;
+	
 	NBTNamedTag[] payload;
 	
-	public NBTCompound() 	{ this.TYPE = 10; this.payload = new NBTNamedTag[0]; }
-	public NBTCompound(NBTNamedTag[] payload) 	{ this.TYPE = 10; this.payload = payload; }
+	public NBTCompound() 	{ this.TYPE = TAG_TYPE; this.payload = new NBTNamedTag[0]; }
+	public NBTCompound(NBTNamedTag[] payload) 	{ this.TYPE = TAG_TYPE; this.payload = payload; }
 
 	/**
 	 * Adds a tag, and doesn't check for a duplicate with the same key.

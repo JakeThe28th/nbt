@@ -8,8 +8,10 @@ import disaethia.io.nbt.utils.ActualStringBuffer;
 
 public class NBTByteArray extends NBTTag {
 	
+	public static final byte TAG_TYPE = 7;
+
 	byte[] payload;
-	public NBTByteArray(byte[] val) { set(val); this.TYPE = 7; }
+	public NBTByteArray(byte[] val) { set(val); this.TYPE = TAG_TYPE; }
 	
 	public void set(byte[] val) 	{ this.payload = val; }
 	public byte[] get() 			{ return this.payload; }

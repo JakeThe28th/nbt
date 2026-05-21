@@ -11,7 +11,7 @@ public class NBTString extends NBTTag {
 	public static final byte TAG_TYPE = 8;
 	
 	String payload;
-	public NBTString(String val) 	{ set(val); this.TYPE = 8;}
+	public NBTString(String val) 	{ set(val); this.TYPE = TAG_TYPE; }
 	
 	public void set(String val) 	{ this.payload = val; }
 	public String get() 			{ return this.payload; }

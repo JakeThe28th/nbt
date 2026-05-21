@@ -7,7 +7,7 @@ public class NBTInt extends NBTTag {
 	public static final byte TAG_TYPE = 3;
 
 	int payload;
-	public NBTInt(int val) 	{ set(val); this.TYPE = 3; }
+	public NBTInt(int val) 	{ set(val); this.TYPE = TAG_TYPE; }
 	
 	public void set(int val) 	{ this.payload = val; }
 	public int get() 			{ return this.payload; }

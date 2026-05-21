@@ -5,8 +5,10 @@ import java.nio.ByteOrder;
 
 public class NBTInt24 extends NBTTag {
 	
+	public static final byte TAG_TYPE = 32;
+	
 	int payload;
-	public NBTInt24(int val) 	{ set(val); this.TYPE = 32; }
+	public NBTInt24(int val) 	{ set(val); this.TYPE = TAG_TYPE; }
 	
 	public void set(int val) 	{ this.payload = val; }
 	public int get() 			{ return this.payload; }
