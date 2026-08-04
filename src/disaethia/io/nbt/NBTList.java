@@ -120,12 +120,13 @@ public class NBTList extends NBTTag {
 		ArrayList<NBTTag> tags = new ArrayList<NBTTag>();
 		while (snbt.currentChar() != ']') {
 			snbt.readChar(); // Skip over the opening bracket, and over commas.
+			if (snbt.currentChar() == ']') break; // in case of empty lists
 			tags.add(NBTTag.readAnySNBT(snbt));
 		}
 		
-		if (tags.get(0) == null) {
-			 // Was probably empty, and failed to read the ending ']' as a tag.
-			tags = new ArrayList<NBTTag>();
+		snbt.readChar(); // skip over ending ']' bracket
+		
+		if (tags.size() == 0) {
 			return new NBTList((byte) 0);
 		}
 		

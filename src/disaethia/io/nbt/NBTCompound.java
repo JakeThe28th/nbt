@@ -107,7 +107,11 @@ public class NBTCompound extends NBTTag implements Iterable<NBTNamedTag> {
 		ArrayList<NBTNamedTag> tags = new ArrayList<NBTNamedTag>();
 		while (snbt.currentChar() != '}') {
 			tags.add(NBTNamedTag.fromSNBT(snbt));
-			if (snbt.currentChar() != ',') break;
+			if (snbt.currentChar() == '}') break;
+			if (snbt.currentChar() != ',') {
+				// Not '}' or a comma...?
+				throw new ParseException("Unexpected char '" + snbt.currentCharReal() + "' after tag.", snbt.index());
+			}
 			snbt.readChar();
 		}
 		snbt.readChar(); // skip over '}'

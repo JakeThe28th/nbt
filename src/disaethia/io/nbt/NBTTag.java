@@ -177,7 +177,7 @@ public class NBTTag {
 			String data = snbt.readUntil(new char[] {']',',','}'}, new char[] {}).trim();
 			int li = data.length()-1;
 			String parse = data.substring(0, li);
-			if (Character.isDigit(data.charAt(li))) parse = data; // Don't cut of Ints and Doubles
+			if (Character.isDigit(data.charAt(li))) parse = data; // Don't cut off Ints and Doubles
 			
 			// Now that we've isolated the value, 
 			// we can do checks based on the last character or if it contains a '.'
@@ -191,10 +191,11 @@ public class NBTTag {
 		
 		/* Lists and Arrays */
 		if (c == '[') 	{ 
-			int 	index 		= snbt.index();
-			char 	next_char 	= snbt.readChar();
-			snbt.index(index); // reset to before reading first character
-			
+			int 	index 		= snbt.index() - 1;
+								  snbt.readChar(); // skip over the opening '[' bracket
+			char 	next_char 	= snbt.readChar(); 
+			snbt.index(index); // reset so the current character is the opening bracket again
+
 			/* TAG_BYTE_ARRAY */
 				 if (next_char == 'b' || next_char == 'B' ) payload = NBTByteArray	.fromSNBT(snbt); 
 			
@@ -218,6 +219,7 @@ public class NBTTag {
 		if (c == '\"' || c == '\'') { payload = NBTString.fromSNBT(snbt);  }
 		//if (payload == null) 		{ payload = NBTString.fromSNBT(snbt);  }
 
+		if (payload == null) throw new ParseException("Failed to read a Tag", snbt.index());
 		
 		return payload;
 	}

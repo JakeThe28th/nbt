@@ -63,7 +63,11 @@ public class NBTByteArray extends NBTTag {
 		snbt.readChar();
 		String data = snbt.readUntil(new char[] { ']' });
 		
+		if (data.isEmpty()) return new NBTByteArray(new byte[0]);
+		
+		snbt.readChar(); // skip over ending ']'
 		String[] array = data.split(",");
+		
 		byte[] bytearray = new byte[array.length];
 		for (int i = 0; i < array.length; i++) {
 			bytearray[i] = Byte.parseByte(array[i].substring(0, array[i].length()-1));

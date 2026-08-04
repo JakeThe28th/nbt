@@ -63,6 +63,9 @@ public class NBTIntArray extends NBTTag {
 		snbt.readUntil(new char[] { ';' });
 		String data = snbt.readUntil(new char[] { ']' });
 		
+		if (data.isEmpty()) return new NBTIntArray(new int[0]);
+		
+		snbt.readChar(); // skip over ending ']'
 		String[] array = data.split(",");
 		int[] intarray = new int[array.length];
 		for (int i = 0; i < array.length; i++) {
