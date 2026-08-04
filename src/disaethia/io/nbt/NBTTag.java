@@ -191,23 +191,21 @@ public class NBTTag {
 		
 		/* Lists and Arrays */
 		if (c == '[') 	{ 
-			// I know DRY exists but it's just once okkk... l>- -<l
-			// We need to know the length of this value.
-			// Lists end at ]. All potential string tags should be escaped.
-			String data = snbt.readUntil(new char[] {']'}, new char[] {});
-			data += snbt.readChar();	// Read the ending ]
+			int 	index 		= snbt.index();
+			char 	next_char 	= snbt.readChar();
+			snbt.index(index); // reset to before reading first character
 			
 			/* TAG_BYTE_ARRAY */
-			if (data.charAt(1) == 'b' || data.charAt(1) == 'B' ) payload = NBTByteArray.fromSNBT(new ActualStringBuffer(data)); 
+				 if (next_char == 'b' || next_char == 'B' ) payload = NBTByteArray	.fromSNBT(snbt); 
 			
 			/* TAG_INT_ARRAY */
-			else if (data.charAt(1) == 'i' || data.charAt(1) == 'I' ) payload = NBTIntArray.fromSNBT(new ActualStringBuffer(data)); 
+			else if (next_char == 'i' || next_char == 'I' ) payload = NBTIntArray	.fromSNBT(snbt); 
 			
 			/* TAG_LONG_ARRAY */
-			else if (data.charAt(1) == 'l' || data.charAt(1) == 'L' ) payload = NBTLongArray.fromSNBT(new ActualStringBuffer(data)); 
+			else if (next_char == 'l' || next_char == 'L' ) payload = NBTLongArray	.fromSNBT(snbt); 
 			
 			/* TAG_LIST */
-			else payload = NBTList.fromSNBT(new ActualStringBuffer(data)); 
+			else payload = NBTList.fromSNBT(snbt); 
 		
 		}
 		

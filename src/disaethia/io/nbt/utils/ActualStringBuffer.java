@@ -97,6 +97,10 @@ public class ActualStringBuffer {
 	public int index() {
 		return index;
 	}
+	
+	public void index(int idx) {
+		index = idx;
+	}
 
 	/**
 	 * Get the surrounding context to the current index
